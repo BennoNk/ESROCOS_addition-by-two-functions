@@ -1,0 +1,27 @@
+--  This file was generated automatically: DO NOT MODIFY IT !
+
+--  This file contains a part of the system CONCURRENCY VIEW.
+--  It is an input file for OCARINA.
+
+package vt_manager_clock_CV_Thread
+public
+	with Deployment;
+	with process_package;
+	with Dataview;
+
+THREAD vt_manager_clock_vt_manager_clock
+END vt_manager_clock_vt_manager_clock;
+
+THREAD IMPLEMENTATION vt_manager_clock_vt_manager_clock.others
+PROPERTIES
+	Initialize_Entrypoint_Source_Text => "init_manager";
+	Compute_Entrypoint_Source_Text => "po_hi_c_vt_manager_clock_artificial_clock";
+	Dispatch_Protocol      => Periodic;
+	Period                 => 2000 ms;
+	Dispatch_Offset        => 0 ms;
+	Compute_Execution_Time => 0 ms .. 2000 ms;
+	Stack_Size             => 100 KByte;
+	Priority               => 10;
+END vt_manager_clock_vt_manager_clock.others;
+
+end vt_manager_clock_CV_Thread;

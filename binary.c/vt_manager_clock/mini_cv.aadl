@@ -1,0 +1,54 @@
+-- Automatically Generated - For use with AADL2GlueC only - Do NOT modify! --
+
+SUBPROGRAM artificial_clock
+END artificial_clock;
+
+SUBPROGRAM IMPLEMENTATION artificial_clock.C
+PROPERTIES
+	FV_Name => "vt_manager_clock";
+	Source_Language => C;
+END artificial_clock.C;
+
+SUBPROGRAM clock
+END clock;
+
+SUBPROGRAM IMPLEMENTATION clock.C
+PROPERTIES
+	FV_Name => "vt_manager_clock";
+	Source_Language => C;
+END clock.C;
+
+SUBPROGRAM numbers_vt
+FEATURES
+	number1:OUT PARAMETER DataView::T_Int8 {encoding=>NATIVE;};
+	number2:OUT PARAMETER DataView::T_Int8 {encoding=>NATIVE;};
+END numbers_vt;
+
+SUBPROGRAM IMPLEMENTATION numbers_vt.C
+PROPERTIES
+	FV_Name => "vt_manager_clock";
+	Source_Language => C;
+END numbers_vt.C;
+
+SUBPROGRAM check_queue_vt
+FEATURES
+	res:IN PARAMETER DataView::T_Boolean {encoding=>NATIVE;};
+END check_queue_vt;
+
+SUBPROGRAM IMPLEMENTATION check_queue_vt.C
+PROPERTIES
+	FV_Name => "vt_manager_clock";
+	Source_Language => C;
+END check_queue_vt.C;
+
+SUBPROGRAM sum_vt
+FEATURES
+	sum_param:OUT PARAMETER DataView::T_Int8 {encoding=>NATIVE;};
+END sum_vt;
+
+SUBPROGRAM IMPLEMENTATION sum_vt.C
+PROPERTIES
+	FV_Name => "vt_manager_clock";
+	Source_Language => C;
+END sum_vt.C;
+

@@ -1,0 +1,4 @@
+ASNACN_DIR: dataview/
+PROJECT_NAME: addition-by-two-functions
+deps:
+- types/base: ''

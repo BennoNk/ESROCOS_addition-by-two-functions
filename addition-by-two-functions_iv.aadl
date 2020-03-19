@@ -1,0 +1,170 @@
+---------------------------------------------------
+-- AADL2.1
+-- TASTE type interfaceview
+-- 
+-- generated code: do not edit
+---------------------------------------------------
+
+PACKAGE interfaceview::IV::manager
+PUBLIC
+
+WITH interfaceview::IV::addition;
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SUBPROGRAM PI_clock
+END PI_clock;
+
+SUBPROGRAM IMPLEMENTATION PI_clock.others
+PROPERTIES
+  Compute_Execution_Time => 0 ms .. 2000 ms;
+END PI_clock.others;
+
+SUBPROGRAM PI_sum
+FEATURES
+  sum_param : IN PARAMETER DataView::T_Int8 {
+    Taste::encoding => NATIVE;
+  };
+END PI_sum;
+
+SUBPROGRAM IMPLEMENTATION PI_sum.others
+PROPERTIES
+  Compute_Execution_Time => 0 ms .. 0 ms;
+END PI_sum.others;
+
+SUBPROGRAM RI_numbers
+FEATURES
+  number1 : IN PARAMETER DataView::T_Int8 {
+    Taste::encoding => NATIVE;
+  };
+  number2 : IN PARAMETER DataView::T_Int8 {
+    Taste::encoding => NATIVE;
+  };
+END RI_numbers;
+
+SUBPROGRAM IMPLEMENTATION RI_numbers.others
+END RI_numbers.others;
+
+SYSTEM manager
+FEATURES
+  PI_clock : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::manager::PI_clock.others {
+    Taste::coordinates => "106990 74533";
+    Taste::RCMoperationKind => cyclic;
+    Taste::RCMperiod => 2000 ms;
+    Taste::Deadline => 2000 ms;
+    Taste::InterfaceName => "clock";
+  };
+  PI_sum : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::manager::PI_sum.others {
+    Taste::coordinates => "148123 82270";
+    Taste::RCMoperationKind => unprotected;
+    Taste::InterfaceName => "sum";
+  };
+  RI_numbers : REQUIRES SUBPROGRAM ACCESS interfaceview::IV::addition::PI_numbers.others {
+    Taste::coordinates => "148123 103583";
+    Taste::RCMoperationKind => any;
+    Taste::InterfaceName => "numbers";
+    Taste::labelInheritance => "true";
+  };
+PROPERTIES
+  Source_Language => (C);
+  Taste::Active_Interfaces => any;
+END manager;
+
+SYSTEM IMPLEMENTATION manager.others
+END manager.others;
+
+END interfaceview::IV::manager;
+
+PACKAGE interfaceview::IV::addition
+PUBLIC
+
+WITH interfaceview::IV::manager;
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SUBPROGRAM PI_numbers
+FEATURES
+  number1 : IN PARAMETER DataView::T_Int8 {
+    Taste::encoding => NATIVE;
+  };
+  number2 : IN PARAMETER DataView::T_Int8 {
+    Taste::encoding => NATIVE;
+  };
+END PI_numbers;
+
+SUBPROGRAM IMPLEMENTATION PI_numbers.others
+PROPERTIES
+  Compute_Execution_Time => 0 ms .. 0 ms;
+END PI_numbers.others;
+
+SUBPROGRAM RI_sum
+FEATURES
+  sum_param : IN PARAMETER DataView::T_Int8 {
+    Taste::encoding => NATIVE;
+  };
+END RI_sum;
+
+SUBPROGRAM IMPLEMENTATION RI_sum.others
+END RI_sum.others;
+
+SYSTEM addition
+FEATURES
+  PI_numbers : PROVIDES SUBPROGRAM ACCESS interfaceview::IV::addition::PI_numbers.others {
+    Taste::coordinates => "174917 103592";
+    Taste::RCMoperationKind => unprotected;
+    Taste::InterfaceName => "numbers";
+  };
+  RI_sum : REQUIRES SUBPROGRAM ACCESS interfaceview::IV::manager::PI_sum.others {
+    Taste::coordinates => "174917 82270";
+    Taste::RCMoperationKind => any;
+    Taste::InterfaceName => "sum";
+    Taste::labelInheritance => "true";
+  };
+PROPERTIES
+  Source_Language => (C);
+  Taste::Active_Interfaces => any;
+END addition;
+
+SYSTEM IMPLEMENTATION addition.others
+END addition.others;
+
+END interfaceview::IV::addition;
+
+PACKAGE interfaceview::IV
+PUBLIC
+
+WITH interfaceview::IV::manager;
+WITH interfaceview::IV::addition;
+WITH Taste;
+WITH DataView;
+WITH TASTE_IV_Properties;
+SYSTEM interfaceview
+PROPERTIES
+  Taste::dataView => ("DataView");
+  Taste::dataViewPath => ("addition-by-two-functions_dv.aadl");
+END interfaceview;
+
+SYSTEM IMPLEMENTATION interfaceview.others
+SUBCOMPONENTS
+  manager : SYSTEM interfaceview::IV::manager::manager.others {
+    Taste::coordinates => "96233 74533 148123 114158";
+  };
+  addition : SYSTEM interfaceview::IV::addition::addition.others {
+    Taste::coordinates => "174917 74722 226807 114158";
+  };
+CONNECTIONS
+  manager_PI_sum_addition_RI_sum : SUBPROGRAM ACCESS manager.PI_sum -> addition.RI_sum {
+    Taste::coordinates => "174917 82270 161520 82270 161520 82270 148123 82270";
+  };
+  addition_PI_numbers_manager_RI_numbers : SUBPROGRAM ACCESS addition.PI_numbers -> manager.RI_numbers {
+    Taste::coordinates => "148123 103583 161520 103583 161520 103592 174917 103592";
+  };
+END interfaceview.others;
+
+PROPERTIES
+  Taste::dataView => ("DataView");
+  Taste::dataViewPath => ("addition-by-two-functions_dv.aadl");
+  Taste::coordinates => "0 0 297000 210000";
+  Taste::version => "2.0";
+END interfaceview::IV;
+

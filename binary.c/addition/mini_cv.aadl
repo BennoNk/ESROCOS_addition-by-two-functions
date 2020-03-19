@@ -1,0 +1,29 @@
+-- Automatically Generated - For use with AADL2GlueC only - Do NOT modify! --
+
+SUBPROGRAM numbers
+FEATURES
+	number1:IN PARAMETER DataView::T_Int8 {encoding=>NATIVE;};
+	number2:IN PARAMETER DataView::T_Int8 {encoding=>NATIVE;};
+END numbers;
+
+SUBPROGRAM IMPLEMENTATION numbers.C
+PROPERTIES
+	FV_Name => "addition";
+	Source_Language => C;
+	Taste::Active_Interfaces => "any";
+	Taste::coordinates => "174917 74722 226807 114158";
+END numbers.C;
+
+SUBPROGRAM sum
+FEATURES
+	sum_param:OUT PARAMETER DataView::T_Int8 {encoding=>NATIVE;};
+END sum;
+
+SUBPROGRAM IMPLEMENTATION sum.C
+PROPERTIES
+	FV_Name => "addition";
+	Source_Language => C;
+	Taste::Active_Interfaces => "any";
+	Taste::coordinates => "174917 74722 226807 114158";
+END sum.C;
+

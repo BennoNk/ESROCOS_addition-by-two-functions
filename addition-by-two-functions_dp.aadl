@@ -1,0 +1,74 @@
+---------------------------------------------------
+-- AADL2.1
+-- TASTE type deploymentview
+-- 
+-- generated code: do not edit
+---------------------------------------------------
+
+PACKAGE deploymentview::DV::Node1
+PUBLIC
+
+WITH Taste;
+WITH Deployment;
+WITH TASTE_DV_Properties;
+PROCESS x86_partition
+END x86_partition;
+
+PROCESS IMPLEMENTATION x86_partition.others
+END x86_partition.others;
+
+END deploymentview::DV::Node1;
+
+PACKAGE deploymentview::DV
+PUBLIC
+
+WITH interfaceview::IV::manager;
+WITH interfaceview::IV::addition;
+WITH ocarina_processors_x86;
+WITH deploymentview::DV::Node1;
+WITH Taste;
+WITH Deployment;
+WITH interfaceview::IV;
+WITH TASTE_DV_Properties;
+SYSTEM Node1
+END Node1;
+
+SYSTEM IMPLEMENTATION Node1.others
+SUBCOMPONENTS
+  IV_manager : SYSTEM interfaceview::IV::manager::manager.others {
+    Taste::FunctionName => "manager";
+  };
+  IV_addition : SYSTEM interfaceview::IV::addition::addition.others {
+    Taste::FunctionName => "addition";
+  };
+  x86_partition : PROCESS deploymentview::DV::Node1::x86_partition.others {
+    Taste::coordinates => "128695 94772 192458 139984";
+    Deployment::Port_Number => 0;
+  };
+  x86_linux_dll : PROCESSOR ocarina_processors_x86::x86.linux_dll {
+    Taste::coordinates => "120725 81854 200428 146443";
+  };
+PROPERTIES
+  Taste::APLC_Binding => (reference (x86_partition)) APPLIES TO IV_manager;
+  Taste::APLC_Binding => (reference (x86_partition)) APPLIES TO IV_addition;
+  Actual_Processor_Binding => (reference (x86_linux_dll)) APPLIES TO x86_partition;
+END Node1.others;
+
+SYSTEM deploymentview
+END deploymentview;
+
+SYSTEM IMPLEMENTATION deploymentview.others
+SUBCOMPONENTS
+  Node1 : SYSTEM Node1.others {
+    Taste::coordinates => "110762 63400 210391 155670";
+  };
+  interfaceview : SYSTEM interfaceview::IV::interfaceview.others;
+END deploymentview.others;
+
+PROPERTIES
+  Taste::coordinates => "0 0 297000 210000";
+  Taste::version => "2.0";
+  Taste::interfaceView => "addition-by-two-functions_iv.aadl";
+  Taste::HWLibraries => ("../../tool-inst/share/ocarina/AADLv2/ocarina_components.aadl");
+END deploymentview::DV;
+

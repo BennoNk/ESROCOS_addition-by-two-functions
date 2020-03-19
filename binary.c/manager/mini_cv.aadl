@@ -1,0 +1,53 @@
+-- Automatically Generated - For use with AADL2GlueC only - Do NOT modify! --
+
+SUBPROGRAM clock
+END clock;
+
+SUBPROGRAM IMPLEMENTATION clock.C
+PROPERTIES
+	FV_Name => "manager";
+	Source_Language => C;
+	Taste::Active_Interfaces => "any";
+	Taste::coordinates => "96233 74533 148123 114158";
+END clock.C;
+
+SUBPROGRAM sum
+FEATURES
+	sum_param:IN PARAMETER DataView::T_Int8 {encoding=>NATIVE;};
+END sum;
+
+SUBPROGRAM IMPLEMENTATION sum.C
+PROPERTIES
+	FV_Name => "manager";
+	Source_Language => C;
+	Taste::Active_Interfaces => "any";
+	Taste::coordinates => "96233 74533 148123 114158";
+END sum.C;
+
+SUBPROGRAM numbers
+FEATURES
+	number1:OUT PARAMETER DataView::T_Int8 {encoding=>NATIVE;};
+	number2:OUT PARAMETER DataView::T_Int8 {encoding=>NATIVE;};
+END numbers;
+
+SUBPROGRAM IMPLEMENTATION numbers.C
+PROPERTIES
+	FV_Name => "manager";
+	Source_Language => C;
+	Taste::Active_Interfaces => "any";
+	Taste::coordinates => "96233 74533 148123 114158";
+END numbers.C;
+
+SUBPROGRAM check_queue
+FEATURES
+	res:IN PARAMETER DataView::T_Boolean {encoding=>NATIVE;};
+END check_queue;
+
+SUBPROGRAM IMPLEMENTATION check_queue.C
+PROPERTIES
+	FV_Name => "manager";
+	Source_Language => C;
+	Taste::Active_Interfaces => "any";
+	Taste::coordinates => "96233 74533 148123 114158";
+END check_queue.C;
+

@@ -1,0 +1,197 @@
+--  TASTE - Warning: This is NOT the real Concurrency view  --
+--  This file was automatically generated and should remain read-only
+--  Open it with TASTE-IV
+--  The only intended use of this file is visualization - not processing.
+
+package generated_cv::IV::ConcurrencyView
+public
+with dataview; 
+with exportedComponent::FV;
+with taste;
+
+  --{ interfaceview obj6480 10 10
+  --TASTE-generated concurrency view
+  --For visualization purposes.
+  --}
+
+  system exportedComponent
+  end exportedComponent;
+
+  system implementation exportedComponent.others
+    subcomponents
+	manager : system interfaceview::IV::PASSIVE_manager.others;
+	addition : system interfaceview::IV::PASSIVE_addition.others;
+	x86_partition_taste_api : system interfaceview::IV::PASSIVE_x86_partition_taste_api.others;
+	vt_manager_clock : system interfaceview::IV::THREAD_vt_manager_clock.others;
+    connections
+	unprotected_numbers : subprogram access PASSIVE_addition.numbers -> PASSIVE_manager.numbers;
+	unprotected_manager_has_pending_msg : subprogram access PASSIVE_x86_partition_taste_api.manager_has_pending_msg -> PASSIVE_manager.check_queue;
+	unprotected_sum : subprogram access PASSIVE_manager.sum -> PASSIVE_addition.sum;
+	unprotected_clock : subprogram access PASSIVE_manager.clock -> THREAD_vt_manager_clock.clock;
+	unprotected_numbers : subprogram access PASSIVE_addition.numbers -> THREAD_vt_manager_clock.numbers_vt;
+	unprotected_manager_has_pending_msg : subprogram access PASSIVE_x86_partition_taste_api.manager_has_pending_msg -> THREAD_vt_manager_clock.check_queue_vt;
+	unprotected_sum : subprogram access PASSIVE_manager.sum -> THREAD_vt_manager_clock.sum_vt;
+  end exportedComponent.others;
+
+  system PASSIVE_manager
+    features
+	clock : provides subprogram access exportedComponent::fv::clock.others
+	  { taste::Coordinates => "200 215 200 215";
+	    taste::RCMoperationKind => unprotected;
+	    taste::RCMperiod => 2000;};
+	sum : provides subprogram access exportedComponent::fv::sum.others
+	  { taste::Coordinates => "200 260 200 260";
+	    taste::RCMoperationKind => unprotected;
+	    taste::RCMperiod => 0;};
+	numbers : requires subprogram access exportedComponent::fv::numbers.others
+	  { taste::Coordinates => "450 215 450 215";
+	    taste::RCMoperationKind => unprotected;
+	    taste::RCMperiod => 0;};
+	check_queue : requires subprogram access exportedComponent::fv::manager_has_pending_msg.others
+	  { taste::Coordinates => "450 260 450 260";
+	    taste::RCMoperationKind => unprotected;
+	    taste::RCMperiod => 0;};
+    properties
+	source_language => C;
+	taste::coordinates => "200 200 450 290";
+	taste::instance_name => "manager";
+  end PASSIVE_manager;
+
+  system implementation PASSIVE_manager.others
+    subcomponents
+	clock_impl : subprogram exportedComponent::FV::clock.others
+	  { compute_execution_time => 0ms..0ms;};
+	sum_impl : subprogram exportedComponent::FV::sum.others
+	  { compute_execution_time => 0ms..0ms;};
+	numbers_impl : subprogram exportedComponent::FV::numbers.others
+	  { compute_execution_time => 0ms..0ms;};
+	check_queue_impl : subprogram exportedComponent::FV::manager_has_pending_msg.others
+	  { compute_execution_time => 0ms..0ms;};
+    connections
+	subprogram access clock_impl -> clock;
+	subprogram access sum_impl -> sum;
+	subprogram access numbers_impl -> numbers;
+	subprogram access check_queue_impl -> check_queue;
+  end PASSIVE_manager.others;
+
+  system PASSIVE_addition
+    features
+	numbers : provides subprogram access exportedComponent::fv::numbers.others
+	  { taste::Coordinates => "600 215 600 215";
+	    taste::RCMoperationKind => unprotected;
+	    taste::RCMperiod => 0;};
+	sum : requires subprogram access exportedComponent::fv::sum.others
+	  { taste::Coordinates => "850 215 850 215";
+	    taste::RCMoperationKind => unprotected;
+	    taste::RCMperiod => 0;};
+    properties
+	source_language => C;
+	taste::coordinates => "600 200 850 245";
+	taste::instance_name => "addition";
+  end PASSIVE_addition;
+
+  system implementation PASSIVE_addition.others
+    subcomponents
+	numbers_impl : subprogram exportedComponent::FV::numbers.others
+	  { compute_execution_time => 0ms..0ms;};
+	sum_impl : subprogram exportedComponent::FV::sum.others
+	  { compute_execution_time => 0ms..0ms;};
+    connections
+	subprogram access numbers_impl -> numbers;
+	subprogram access sum_impl -> sum;
+  end PASSIVE_addition.others;
+
+  system PASSIVE_x86_partition_taste_api
+    features
+	manager_has_pending_msg : provides subprogram access exportedComponent::fv::check_queue.others
+	  { taste::Coordinates => "1000 215 1000 215";
+	    taste::RCMoperationKind => unprotected;
+	    taste::RCMperiod => 0;};
+    properties
+	source_language => C;
+	taste::coordinates => "1000 200 1250 245";
+	taste::instance_name => "x86_partition_taste_api";
+  end PASSIVE_x86_partition_taste_api;
+
+  system implementation PASSIVE_x86_partition_taste_api.others
+    subcomponents
+	manager_has_pending_msg_impl : subprogram exportedComponent::FV::check_queue.others
+	  { compute_execution_time => 0ms..0ms;};
+    connections
+	subprogram access manager_has_pending_msg_impl -> manager_has_pending_msg;
+  end PASSIVE_x86_partition_taste_api.others;
+
+  system THREAD_vt_manager_clock
+    features
+	artificial_clock : provides subprogram access exportedComponent::fv::clock.others
+	  { taste::Coordinates => "1400 215 1400 215";
+	    taste::RCMoperationKind => cyclic;
+	    taste::RCMperiod => 2000;};
+	clock : requires subprogram access exportedComponent::fv::clock.others
+	  { taste::Coordinates => "1650 215 1650 215";
+	    taste::RCMoperationKind => unprotected;
+	    taste::RCMperiod => 2000;};
+	numbers_vt : requires subprogram access exportedComponent::fv::numbers.others
+	  { taste::Coordinates => "1650 260 1650 260";
+	    taste::RCMoperationKind => unprotected;
+	    taste::RCMperiod => 0;};
+	check_queue_vt : requires subprogram access exportedComponent::fv::manager_has_pending_msg.others
+	  { taste::Coordinates => "1650 305 1650 305";
+	    taste::RCMoperationKind => unprotected;
+	    taste::RCMperiod => 0;};
+	sum_vt : requires subprogram access exportedComponent::fv::sum.others
+	  { taste::Coordinates => "1650 350 1650 350";
+	    taste::RCMoperationKind => unprotected;
+	    taste::RCMperiod => 0;};
+    properties
+	source_language => C;
+	taste::coordinates => "1400 200 1650 380";
+	taste::instance_name => "vt_manager_clock";
+  end THREAD_vt_manager_clock;
+
+  system implementation THREAD_vt_manager_clock.others
+    subcomponents
+	artificial_clock_impl : subprogram exportedComponent::FV::clock.others
+	  { compute_execution_time => 0ms..0ms;};
+	clock_impl : subprogram exportedComponent::FV::clock.others
+	  { compute_execution_time => 0ms..0ms;};
+	numbers_vt_impl : subprogram exportedComponent::FV::numbers.others
+	  { compute_execution_time => 0ms..0ms;};
+	check_queue_vt_impl : subprogram exportedComponent::FV::manager_has_pending_msg.others
+	  { compute_execution_time => 0ms..0ms;};
+	sum_vt_impl : subprogram exportedComponent::FV::sum.others
+	  { compute_execution_time => 0ms..0ms;};
+    connections
+	subprogram access artificial_clock_impl -> artificial_clock;
+	subprogram access clock_impl -> clock;
+	subprogram access numbers_vt_impl -> numbers_vt;
+	subprogram access check_queue_vt_impl -> check_queue_vt;
+	subprogram access sum_vt_impl -> sum_vt;
+  end THREAD_vt_manager_clock.others;
+
+properties
+  taste::coordinates => "0 0 2970 2100";
+
+end generated_cv::IV;
+
+package exportedComponent::FV
+public
+with dataview;
+with taste;
+
+  subprogram clock
+  end clock;
+
+  subprogram sum
+  end sum;
+
+  subprogram numbers
+  end numbers;
+
+  subprogram manager_has_pending_msg
+  end manager_has_pending_msg;
+
+  subprogram check_queue
+  end check_queue;
+
+end exportedComponent::FV;
