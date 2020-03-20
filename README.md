@@ -1,4 +1,4 @@
-<h1>Heading simple addition by two functions</h1>
+<h1>simple addition by two functions</h1>
 
 A simple addition is represented in ESROCOS by two functions.
 Function "manager" creates 2 random numbers and passes them to the function "addition".
