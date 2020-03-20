@@ -1,4 +1,4 @@
-<h1>simple addition by two functions</h1>
+<h1>Simple addition by two functions</h1>
 
 A simple addition is represented in ESROCOS by two functions.
 Function "manager" creates 2 random numbers and passes them to the function "addition".
@@ -13,7 +13,7 @@ Go into the project folder and call: <em>esrocos_fetch_dependencies</em></br>
 Execute ./run.py to see the addition.</br>
 press Crtl+C to end the program. 
 
-<h2>other details</h2>
+<h2>Other details</h2>
 
 To look into the project call: <em>esrocos_edit_project</em></br>
 The source code of the functions is stored in the folders "manager" and "addition"</br>
